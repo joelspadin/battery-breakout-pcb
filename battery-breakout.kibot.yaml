@@ -1,0 +1,33 @@
+kibot:
+  version: 1
+
+preflight:
+  check_zone_fills: true
+
+global:
+  out_dir: out/%f
+
+import:
+  - file: JLCPCB
+  - file: PCBWay
+
+outputs:
+  - name: schematic
+    type: pdf_sch_print
+
+  - name: step
+    type: step
+    options:
+      subst_models: true
+
+  - name: draw_top
+    type: pcbdraw
+    options:
+      format: png
+      dpi: 1200
+
+  - name: draw_bottom
+    type: pcbdraw
+    extends: draw_top
+    options:
+      bottom: true

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Runs kibot, setting -b and -e to the files for the given project name.
+#
+# Usage:
+# Run on all PCBS:  ./kibot all
+# Run on given PCB: ./kibot numpad
+
+if [ "$1" = "all" ]; then
+    for filename in *.kicad_pcb; do
+        [ -f "$filename" ] || continue
+        [ -f "${filename%.*}.kibot.yaml" ] || continue
+
+        "$0" "${filename%.*}" "${@:2}"
+    done
+else
+    kibot -c "$1.kibot.yaml" -b "$1.kicad_pcb" -e "$1.kicad_sch" "${@:2}"
+fi
