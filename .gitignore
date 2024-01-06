@@ -2,8 +2,6 @@
 /out
 /*-backups/
 *.kicad_sch-bak
-/*.step
-\#*\#
-_autosave-*
-*.VC.DB
 *.lck
+_autosave-*
+\#*\#
